@@ -1,11 +1,15 @@
 const axios = require('axios');
+const scallingCounter = require('./calculateScalling');
 
 const lungCancerTestResult = async (req, res) => {
     console.log(req.body);
+    console.log('age before scalling: ', req.body.age);
+    const scallingAge = scallingCounter.ageInLungCancer(req.body.age);
+    console.log(`age after scalling: ${scallingAge}`);
 
     try {
         const data = {
-            instances: [[parseFloat(req.body.age), parseFloat(req.body.gender),
+            instances: [[scallingAge, parseFloat(req.body.gender),
                         parseFloat(req.body.no1), parseFloat(req.body.no2), parseFloat(req.body.no3), parseFloat(req.body.no4), 
                         parseFloat(req.body.no5), parseFloat(req.body.no6), parseFloat(req.body.no7), parseFloat(req.body.no8), 
                         parseFloat(req.body.no9), parseFloat(req.body.no10), parseFloat(req.body.no11)]]
@@ -32,10 +36,11 @@ const lungCancerTestResult = async (req, res) => {
 
 const brainTumorTestResult = async (req, res) => {
     console.log(req.body);
+    const scallingAge = scallingCounter.ageInBrainTumor(req.body.age);
 
     try {
         const data = {
-            instances: [[parseFloat(req.body.age), parseFloat(req.body.gender),
+            instances: [[scallingAge, parseFloat(req.body.gender),
                         parseFloat(req.body.no1), parseFloat(req.body.no2), parseFloat(req.body.no3), parseFloat(req.body.no4), 
                         parseFloat(req.body.no5), parseFloat(req.body.no6), parseFloat(req.body.no7), parseFloat(req.body.no8), 
                         parseFloat(req.body.no9), parseFloat(req.body.no10), parseFloat(req.body.no11), parseFloat(req.body.no12)]]
