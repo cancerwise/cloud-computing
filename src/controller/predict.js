@@ -3,17 +3,22 @@ const dataScale = require('./calculateScaling');
 
 const lungCancerTestResult = async (req, res) => {
     console.log(req.body);
-    console.log('age before scaling: ', req.body.age);
 
-    const scalingAge = dataScale.ageInLungCancer(req.body.age);
+    const arrayAnswers = req.body.answers;
+    const arrayFloatAnswers = arrayAnswers.map(parseFloat);
+    console.log('arrayAnswers: ', arrayAnswers);
+    console.log('arrayFloatAnswers before shift: ', arrayFloatAnswers);
+
+    const scalingAge = dataScale.ageInLungCancer(arrayFloatAnswers[0]);
     console.log('age after scaling: ', scalingAge);
+
+    arrayFloatAnswers.shift();
+    arrayFloatAnswers.unshift(scalingAge);
+    console.log('arrayFloatAnswers after shift: ', arrayFloatAnswers);
 
     try {
         const data = {
-            instances: [[scalingAge, parseFloat(req.body.gender),
-                        parseFloat(req.body.no1), parseFloat(req.body.no2), parseFloat(req.body.no3), parseFloat(req.body.no4), 
-                        parseFloat(req.body.no5), parseFloat(req.body.no6), parseFloat(req.body.no7), parseFloat(req.body.no8), 
-                        parseFloat(req.body.no9), parseFloat(req.body.no10), parseFloat(req.body.no11)]]
+            instances: [arrayFloatAnswers]
         };
         console.log(data);
         const response = await axios.post('https://lung-cancer-test-qf5zhqokha-et.a.run.app/v1/models/lung_cancer:predict', data);
