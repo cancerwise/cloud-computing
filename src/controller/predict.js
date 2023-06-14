@@ -36,7 +36,7 @@ const lungCancerTestResult = async (req, res) => {
             })
         }
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred' });
+        res.status(400).json({ error: 'Invalid request from client' });
     }
 } 
 
@@ -75,25 +75,24 @@ const brainTumorTestResult = async (req, res) => {
             })
         }
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred' });
+        res.status(400).json({ error: 'Invalid request from client' });
     }
 } 
 
 const cervicalCancerTestResult = async (req, res) => {
     console.log(req.body);
 
-    const initialData = [parseFloat(req.body.age), parseFloat(req.body.no1), parseFloat(req.body.no2), parseFloat(req.body.no3),
-                         parseFloat(req.body.no4), parseFloat(req.body.no5), parseFloat(req.body.no6), parseFloat(req.body.no7), 
-                         parseFloat(req.body.no8), parseFloat(req.body.no9), parseFloat(req.body.no10), parseFloat(req.body.no11), 
-                         parseFloat(req.body.no12), parseFloat(req.body.no13), parseFloat(req.body.no14)];
-    console.log('initial data: ', initialData);
+    const arrayAnswers = req.body.answers;
+    const arrayFloatAnswers = arrayAnswers.map(parseFloat);
+    console.log('arrayAnswers: ', arrayAnswers);
+    console.log('arrayFloatAnswers: ', arrayFloatAnswers);
 
-    const scalingData = dataScale.scaleAllCervicalData(initialData);
-    console.log('scaled data: ', scalingData);
+    const scalingAnswers = dataScale.scaleAllCervicalData(arrayFloatAnswers);
+    console.log('Scaled answers: ', scalingAnswers);
 
     try {
         const data = {
-            instances: [scalingData]
+            instances: [scalingAnswers]
         };
 
         const response = await axios.post('https://cervical-cancer-test-qf5zhqokha-et.a.run.app/v1/models/cervical_cancer:predict', data);
@@ -111,7 +110,7 @@ const cervicalCancerTestResult = async (req, res) => {
             })
         }
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred' });
+        res.status(400).json({ error: 'Invalid request from client' });
     }
 } 
 
