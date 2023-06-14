@@ -36,7 +36,7 @@ const lungCancerTestResult = async (req, res) => {
             })
         }
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred' });
+        res.status(400).json({ error: 'Invalid request from client' });
     }
 } 
 
@@ -75,7 +75,7 @@ const brainTumorTestResult = async (req, res) => {
             })
         }
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred' });
+        res.status(400).json({ error: 'Invalid request from client' });
     }
 } 
 
@@ -110,7 +110,7 @@ const cervicalCancerTestResult = async (req, res) => {
             })
         }
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred' });
+        res.status(400).json({ error: 'Invalid request from client' });
     }
 } 
 
