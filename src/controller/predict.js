@@ -28,11 +28,11 @@ const lungCancerTestResult = async (req, res) => {
 
         if(testResult > 0.5) {
             res.json({
-                status: "positive lung cancer"
+                status: "We calculated that there is strong evidence based on your data that you have a high probability of having lung cancer"
             })
         } else {
             res.json({
-                status: "negative lung cancer"
+                status: "We calculated that there is strong evidence based on your data that you have a high probability of being free from lung cancer"
             })
         }
     } catch (error) {
@@ -67,11 +67,11 @@ const brainTumorTestResult = async (req, res) => {
 
         if(testResult > 0.5) {
             res.json({
-                status: "positive brain tumor cancer"
+                status: "We calculated that there is strong evidence based on your data that you have a high probability of having a brain tumor"
             })
         } else {
             res.json({
-                status: "negative brain tumor cancer"
+                status: "We calculated that there is strong evidence based on your data that you have a high probability of being free from brain tumors"
             })
         }
     } catch (error) {
@@ -102,11 +102,11 @@ const cervicalCancerTestResult = async (req, res) => {
 
         if(testResult > 0.5) {
             res.json({
-                status: "positive cervical cancer"
+                status: "We calculated that there is strong evidence based on your data that you have a high probability of having cervical cancer"
             })
         } else {
             res.json({
-                status: "negative cervical cancer"
+                status: "We calculated that there is strong evidence based on your data that you have a high probability of being free from cervical cancer"
             })
         }
     } catch (error) {
