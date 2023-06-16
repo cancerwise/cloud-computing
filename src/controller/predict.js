@@ -28,11 +28,13 @@ const lungCancerTestResult = async (req, res) => {
 
         if(testResult > 0.5) {
             res.json({
-                status: "We calculated that there is strong evidence based on your data that you have a high probability of having lung cancer"
+                status: "Positive lung cancer.",
+                action: "Please contact your doctor immediately."
             })
         } else {
             res.json({
-                status: "We calculated that there is strong evidence based on your data that you have a high probability of being free from lung cancer"
+                status: "Negative lung cancer.",
+                action: "Please improve your lifestyle by eating healthy food, exercising regularly, and having a good relationship."
             })
         }
     } catch (error) {
@@ -67,11 +69,13 @@ const brainTumorTestResult = async (req, res) => {
 
         if(testResult > 0.5) {
             res.json({
-                status: "We calculated that there is strong evidence based on your data that you have a high probability of having a brain tumor"
+                status: "Positive brain tumor.",
+                action: "Please contact your doctor immediately."
             })
         } else {
             res.json({
-                status: "We calculated that there is strong evidence based on your data that you have a high probability of being free from brain tumors"
+                status: "Negative brain tumor.",
+                action: "Please improve your lifestyle by eating healthy food, exercising regularly, and having a good relationship."
             })
         }
     } catch (error) {
@@ -102,11 +106,13 @@ const cervicalCancerTestResult = async (req, res) => {
 
         if(testResult > 0.5) {
             res.json({
-                status: "We calculated that there is strong evidence based on your data that you have a high probability of having cervical cancer"
+                status: "Positive cervical cancer",
+                action: "Please contact your doctor immediately."
             })
         } else {
             res.json({
-                status: "We calculated that there is strong evidence based on your data that you have a high probability of being free from cervical cancer"
+                status: "Negative cervical cancer",
+                action: "Please improve your lifestyle by eating healthy food, exercising regularly, and having a good relationship."
             })
         }
     } catch (error) {
